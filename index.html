@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pulga Store - Tecnología de Vanguardia</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- AOS CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
+    <!-- Owl Carousel CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      rel="stylesheet"
+    />
+    <!-- SweetAlert2 CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.27/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+    <!-- Toastr CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#" data-aos="fade-right">
+          <i class="fas fa-bolt me-2"></i>Pulga Store
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#products">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contacto.html">Contacto</a>
+            </li>
+          </ul>
+
+          <button class="cart-btn ms-3" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart me-2"></i>Carrito
+            <span class="cart-count" id="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-content">
+        <div class="container">
+          <h1 class="hero-title" data-aos="fade-up">Pulga Store</h1>
+          <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+            Tecnología de vanguardia al mejor precio
+          </p>
+          <button
+            class="btn btn-light btn-lg"
+            data-aos="fade-up"
+            data-aos-delay="400"
+            onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})"
+          >
+            <i class="fas fa-arrow-down me-2"></i>Explorar Productos
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search and Filters Section -->
+    <section class="search-filter-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-3">
+            <div class="search-box">
+              <input
+                type="text"
+                id="search-input"
+                class="form-control"
+                placeholder="Buscar productos..."
+              />
+              <i class="fas fa-search search-icon"></i>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div
+              class="d-flex flex-wrap justify-content-center justify-content-lg-end"
+            >
+              <button class="filter-btn active" data-category="all">
+                Todos
+              </button>
+              <button class="filter-btn" data-category="smartphones">
+                Smartphones
+              </button>
+              <button class="filter-btn" data-category="laptops">
+                Laptops
+              </button>
+              <button class="filter-btn" data-category="tablets">
+                Tablets
+              </button>
+              <button class="filter-btn" data-category="accesorios">
+                Accesorios
+              </button>
+              <button class="filter-btn" data-category="gaming">Gaming</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <h2
+              class="section-title"
+              data-aos="fade-up"
+              style="
+                font-size: 2.5rem;
+                font-weight: 800;
+                color: white;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+              "
+            >
+              Productos Destacados
+            </h2>
+            <p
+              class="section-subtitle"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              style="color: rgba(255, 255, 255, 0.9); font-size: 1.2rem"
+            >
+              Descubre nuestra selección premium de tecnología
+            </p>
+          </div>
+        </div>
+
+        <!-- Loading Animation -->
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p style="color: white">Cargando productos...</p>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="row" id="products-container">
+          <!-- Products will be loaded here by JavaScript -->
+        </div>
+
+        <!-- No Results Message -->
+        <div class="row" id="no-results" style="display: none">
+          <div class="col-12 text-center">
+            <div
+              style="
+                background: white;
+                border-radius: 20px;
+                padding: 50px;
+                margin: 20px 0;
+              "
+            >
+              <i
+                class="fas fa-search"
+                style="
+                  font-size: 4rem;
+                  color: var(--light-color);
+                  margin-bottom: 20px;
+                "
+              ></i>
+              <h4 style="color: var(--dark-color); margin-bottom: 15px">
+                No se encontraron productos
+              </h4>
+              <p style="color: #666">
+                Intenta con otros términos de búsqueda o filtros diferentes
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h4>Tu Carrito</h4>
+        <button class="close-cart" onclick="toggleCart()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="cart-items" id="cart-items">
+        <div class="empty-cart">
+          <i class="fas fa-shopping-cart"></i>
+          <h5>Tu carrito está vacío</h5>
+          <p>Agrega algunos productos increíbles</p>
+        </div>
+      </div>
+
+      <div class="cart-total" id="cart-total" style="display: none">
+        <div class="total-amount">Total: $<span id="total-amount">0</span></div>
+        <button class="checkout-btn" onclick="checkout()">
+          <i class="fas fa-credit-card me-2"></i>Proceder al Pago
+        </button>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.27/sweetalert2.all.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
